@@ -1,0 +1,48 @@
+body {
+    background-color: lightgoldenrodyellow;
+    color: black;
+    width: 1080px;
+    margin: auto;
+    padding: 30px 30px;
+    
+}
+
+header section img{
+    width: 100%;
+    height: 500px;
+    object-fit: scale-down;
+    margin: auto;
+
+}
+figcaption{
+    text-align: center;
+    align-items: center;
+    text-transform: capitalize;
+    font-size: xx-large;
+    background-color: rgb(167, 196, 196);
+    color: red;
+}
+
+#select{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    gap: 30px;
+    margin: auto;
+    align-items: center;
+
+}
+
+
+#button {
+    border-radius:30mm ;
+    width:100%;
+    margin: auto;
+    margin-top: 30px;
+    color: red;
+    background-color: rgb(167, 196, 196);
+    border-color: red;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+
+}
