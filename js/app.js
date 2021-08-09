@@ -20,6 +20,10 @@ let imgArray =[ 'bag.jpg',
 'water-can.jpg',
 'wine-glass.jpg']
 let counter=25;
+let leftRandom=0;
+let middleRandom=0;
+let rightRandom=0;
+
 
 const select = document.getElementById('select');
 let leftImage = document.getElementById( 'left' );
@@ -49,9 +53,9 @@ function random( min , max){
 
 
 function render (){
-    let leftRandom = random( 0 , (imgArray.length - 1) );
-    let middleRandom = random( 0 , (imgArray.length - 1) );
-    let rightRandom = random( 0 , (imgArray.length - 1) );
+    leftRandom = random( 0 , (imgArray.length - 1) );
+    middleRandom = random( 0 , (imgArray.length - 1) );
+    rightRandom = random( 0 , (imgArray.length - 1) );
   
 
     leftImage.src= './img/' + Mall.all[leftRandom].imageSrc;
@@ -78,6 +82,17 @@ function clickCounter(event){
         render() ;
         counter-- ;
     }
+
+    if (event.target.id === 'left'){
+        Mall.all[leftRandom].click++;
+    }
+    else if ( event.target.id === 'middle'){
+        Mall.all[middleRandom].click++;
+    }
+    else if (event.target.id === 'right'){
+        Mall.all[rightRandom].click++;
+    }
+
 }
 
 
@@ -85,14 +100,13 @@ function clickCounter(event){
 button.addEventListener( 'click' , showResults );
 
 function showResults(event2){
-    let ulElement = document.createElement('ul');
+    const ulElement = document.createElement('ul');
     main.appendChild(ulElement);
 
  
-
 for(let i=0; i<imgArray.length; i++){
     let liElement = document.createElement('li');
-    liElement.textContent = imgArray[i] + ' was shown: '+ Mall.all[i].show + ' and was clicked: ' + Mall.all[i].click;
+    liElement.textContent = Mall.all[i].name + ' was shown: '+ Mall.all[i].show + ' and was clicked: ' + Mall.all[i].click;
     ulElement.appendChild(liElement);
 }
 
