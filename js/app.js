@@ -55,19 +55,23 @@ function random(min, max) {
 }
 
 function render() {
-    leftRandom = random(0, (imgArray.length - 1));
-    middleRandom = random(0, (imgArray.length - 1));
-    rightRandom = random(0, (imgArray.length - 1));
+    // leftRandom = random(0, (imgArray.length - 1));
+    // middleRandom = random(0, (imgArray.length - 1));
+    // rightRandom = random(0, (imgArray.length - 1));
 
     // prevent having same image on the same page
-    do {leftRandom = random(0, (imgArray.length - 1));}
-    while(leftRandom == rightRandom || leftRandom == middleRandom);
+    do {leftRandom = random(0, (imgArray.length - 1));
+        rightRandom = random(0, (imgArray.length - 1));
+        middleRandom = random(0, (imgArray.length - 1));
+    }
+    while(leftRandom == rightRandom || leftRandom == middleRandom || rightRandom == middleRandom
+        || previous.includes(leftRandom) || previous.includes(middleRandom) || previous.includes(rightRandom));
+        previous=[leftRandom, middleRandom, rightRandom];
+    // do {}
+    // while();
 
-    do {rightRandom = random(0, (imgArray.length - 1));}
-    while(rightRandom == leftRandom || rightRandom == middleRandom);
-
-    do {middleRandom = random(0, (imgArray.length - 1));}
-    while(middleRandom == rightRandom || middleRandom == leftRandom);
+    // do {}
+    // while();
 
     leftImage.src = './img/' + Mall.all[leftRandom].imageSrc;
     middleImage.src = './img/' + Mall.all[middleRandom].imageSrc;
@@ -82,10 +86,10 @@ function render() {
     //console.log(counter);
     
 
-    previous.push(leftRandom, middleRandom, rightRandom);
+    
     let p=[];
     
-    console.log(counter);
+    //console.log(counter);
 
     // prevent having the same images in two following pages
 let current=[];
@@ -93,8 +97,8 @@ current.push(leftRandom, middleRandom, rightRandom);
 console.log(current);
 
 
-    if (counter<=24){
-    p=[previous[(previous.length)-6], previous[(previous.length)-5], previous[(previous.length)-4]];
+    //if (counter<=24){
+    //p=[previous[(previous.length)-6], previous[(previous.length)-5], previous[(previous.length)-4]];
 
     // while ( current.includes( p[0] || p[1]|| p[2]) ){
     //     leftRandom = random(0, (imgArray.length - 1));
@@ -105,13 +109,13 @@ console.log(current);
     //if (previous.length
     //console.log(previous.length);
     //console.log(previous);
-    console.log(p);
+    //console.log(p);
 
 
 
 
    
-}
+
 
 select.addEventListener('click', clickCounter);
 function clickCounter(event) {
