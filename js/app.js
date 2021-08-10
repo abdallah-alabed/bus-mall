@@ -53,7 +53,7 @@ for (let i = 0; i < imgArray.length; i++) {
 function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-
+getData();
 function render() {
     // leftRandom = random(0, (imgArray.length - 1));
     // middleRandom = random(0, (imgArray.length - 1));
@@ -87,7 +87,7 @@ function render() {
     
 
     
-    let p=[];
+    //let p=[];
     
     //console.log(counter);
 
@@ -95,6 +95,8 @@ function render() {
 let current=[];
 current.push(leftRandom, middleRandom, rightRandom);
 console.log(current);
+
+localStorage.data = JSON.stringify( Mall.all );
 
 
     //if (counter<=24){
@@ -120,20 +122,26 @@ console.log(current);
 select.addEventListener('click', clickCounter);
 function clickCounter(event) {
     if ((counter > 0) && (event.target.id === 'left' || event.target.id === 'middle' || event.target.id === 'right')) {
-        render();
-        counter--;
+        
         //console.log(counter);
-    }
+    
     
 
     if (event.target.id === 'left') {
         Mall.all[leftRandom].click++;
+        console.log(Mall.all[leftRandom]);
+        render();
+        counter--;
     }
     else if (event.target.id === 'middle') {
         Mall.all[middleRandom].click++;
+        render();
+        counter--;
     }
     else if (event.target.id === 'right') {
         Mall.all[rightRandom].click++;
+        render();
+        counter--;
     }
 
     if ( counter == 0 ){
@@ -142,24 +150,9 @@ function clickCounter(event) {
 
          
 
-}
+}}
 
         
-
-
-    
-    
-   
-    
-
-    
-   
-   
-    
-
-
-
-
 button.addEventListener('click', showResults);
 function showResults(event2) {
     const ulElement = document.createElement('ul');
@@ -252,3 +245,16 @@ function createChart() {
         }
     });
 }
+
+function getData() {
+    if( localStorage.data ) {
+      let data = JSON.parse( localStorage.data );
+      for( let i = 0; i < data.length; i++ ) {
+        new Mall( data[i].name, data[i].image, data[i].shown );
+      }
+    } else {
+      for( let i = 0; i < imgArray.length; i++ ) {
+        new Mall( imgArray[i].split( '.' )[0], imgArray[i] );
+      }
+    }
+  }
