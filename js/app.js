@@ -258,3 +258,5 @@ function getData() {
       }
     }
   }
+
+  alert();
